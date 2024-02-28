@@ -3,7 +3,7 @@
 # ## Objective
 #
 # Create a program that takes an integer input from the user and prints its prime factorization.
-# 
+#
 # ## Requirements
 #
 # 1. Ask the user to input a positive integer.

@@ -1,44 +1,23 @@
-# # Task 01: Word Pyramid Generator
-#
-# ## Task
-#
-# Create a program that generates a word pyramid pattern based on user input.
+# # Task 04: Number Guessing Game
 #
 # ## Objective
 #
-# The objective is to generate and print a pyramid pattern using the letters of the word provided by the user. Each level of the pyramid should display the letters of the word up to that level, and the word should be centered on each level of the pyramid.
+# Create a simple number guessing game where the program generates a random number, and the user has to guess it.
 #
 # ## Requirements
 #
-# 1. Ask the user to input a word.
-# 2. Generate and print a pyramid pattern using the letters of the word.
-# 3. Each level of the pyramid should display the letters of the word up to that level.
-# 4. The word should be centered on each level of the pyramid.
-#
+# 1.Generate a random number between a specified range.
+# 2.Ask the user to guess the number.
+# 3.Provide feedback on whether the guess is too high, too low, or correct.
+# 4.Allow the user to continue guessing until they guess the correct number.
+# 5.Display the number of attempts it took to guess correctly.
 # ## Additional Challenges
 #
-# 1. Implement a function to validate the input and ensure it's a valid word.
-# 2. Allow the user to choose the direction of the pyramid (upwards or downwards).
-# 3. Enhance the program to handle phrases or sentences instead of single words.
-#
-# Expected Output:
-# if word level is up:
-# ```
-#             S
-#            S u
-#           S u n
-#          S u n i
-#         S u n i l
-# ```
-#
-# if word level is Down:
-# ```
-#             S u n i l
-#              S u n i
-#               S u n
-#                S u
-#                 S
-# ```
+# 1.Implement error handling to ensure the user inputs a valid number.
+# 2.Allow the user to choose the range of numbers for the guessing game.
+# 3.Enhance the program to provide hints or clues based on the user's previous guesses.
+
+
 
 import random
 def number_guessing_game():
