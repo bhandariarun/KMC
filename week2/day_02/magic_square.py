@@ -1,3 +1,15 @@
+# # Task 04: Magic Square Validator
+#
+# ## Objective
+# Create a program that checks if a given 3x3 matrix forms a magic square.
+#
+# ## Requirements
+#
+# 1. A magic square is a square matrix where the sums of the numbers in each row, column, and both main diagonals are the same.
+# 2. Ask the user to input a 3x3 matrix (nine integer values).
+# 3. Check and print whether the given matrix forms a magic square.
+# 4. Handle cases where the input matrix is not of size 3x3 or contains non-integer values.
+
 def is_magic_square(matrix):
     # Check if the matrix is 3x3
     if len(matrix) != 3 or any(len(row) != 3 for row in matrix):
