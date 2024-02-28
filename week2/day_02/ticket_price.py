@@ -1,3 +1,20 @@
+# # Task 02: Ticket Price Calculator Exercise
+#
+# ## Objective
+# Create a program that calculates the ticket price for a movie based on the age and whether the customer is a student.
+#
+# ## Requirements
+#
+# 1. Get the user's age and whether they are a student (True or False) as input.
+# 2. Define the ticket prices:
+#    - Children (age 0-12): \$10
+#    - Teenagers (age 13-17): \$15
+#    - Adults (age 18 and above): $20
+#    - Students (regardless of age): \$18 (discounted price)
+# 3. Calculate and print the ticket price based on the user's age and student status.
+# 4. Handle cases where the entered age is not a valid numeric value.
+# 5. Provide a message for cases where the age is negative or non-integer.
+
 def calculate_ticket_price(age, is_student):
     if age < 0 or not isinstance(age, int):
         print("Invalid age entered.")
