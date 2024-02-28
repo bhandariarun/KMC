@@ -1,6 +1,17 @@
+# # Task 03: Word Frequency Counter
+#
+# ## Objective
+# Create a program that analyzes a given text and counts the frequency of each unique word.
+#
+# ## Requirements
+#
+# 1. Ask the user to input a paragraph or sentence.
+# 2. Tokenize the input into words (ignoring punctuation and case sensitivity).
+# 3. Count the frequency of each unique word.
+# 4. Display the word frequencies in alphabetical order.
+# 5. Handle cases where the input is empty.
+
 import string
-
-
 def word_frequency_counter(text):
     # Convert the text to lowercase and remove punctuation
     text = text.lower()
