@@ -1,1 +1,2 @@
-Hi I'm learning how to write in a file using Python
+Hello I'm learning Python
+Python is an awesome language
