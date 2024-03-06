@@ -76,27 +76,6 @@ def login_user(username, password):
 
 
 
-
-# Function to update password
-# def update_password(username, old_password, new_password):
-#     # Check if the user is logged in
-#     c.execute("SELECT * FROM login_user WHERE username=? AND logged_in=1", (username,))
-#     if not c.fetchone():
-#         raise UserNotLoggedInError("User must be logged in to update password")
-
-#     c.execute("SELECT * FROM register_user WHERE username=?", (username,))
-#     user = c.fetchone()
-#     hashed_old_password = hashlib.sha256(old_password.encode()).hexdigest()
-#     if hashed_old_password != user[2]:
-#         raise InvalidCredentialsError("Invalid old password")
-
-#     # Update password
-#     hashed_new_password = hashlib.sha256(new_password.encode()).hexdigest()
-#     c.execute("UPDATE register_user SET password=? WHERE username=?", (hashed_new_password, username))
-#     conn.commit()
-#     print("Password updated successfully")
-
-
 def update_password(username, old_password, new_password):
     # Check if the user is logged in
     c.execute("SELECT * FROM login_user WHERE username=? AND logged_in=1", (username,))
