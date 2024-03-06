@@ -74,9 +74,7 @@ for i in range(8, len(z)):
 output_data = [column_names]
 output_data.extend(complete_data )
 
-# for i in range(0, len(data), len(headers)):
-#         row = data[i:i + len(headers)]
-#         output_data.append(row)
+
 output_data_filtered = [[row[i] for i in range(len(row)) if i != 0 and i != 10 and i != 11 and i !=13][:11] for row in output_data]
 for row in output_data_filtered:
     print(row)
