@@ -45,57 +45,112 @@ def register_user(username, email, password):
 
     # Insert user into the registration table
     c.execute("INSERT INTO register_user (username, email, password) VALUES (?, ?, ?)", (username, email, hashed_password))
+    c.execute("INSERT INTO login_user (username, password) VALUES (?, ?)", (username, hashed_password))
     conn.commit()
 
-    print("Registration successful")
+    print("Registration successfull")
 
 # Function to authenticate a user
 
 
 
+# def login_user(username, password):
+#     # Check if the user is already logged in
+#     c.execute("SELECT * FROM login_user WHERE username=? AND password=?", (username,password))
+#     if c.fetchone():
+#         raise UserAlreadyLoggedInError("User is logged in Successfully")
+
+#     # Verify the entered username and password against the stored information in the registration table
+#     c.execute("SELECT * FROM register_user WHERE username=?", (username,))
+#     register_user_data = c.fetchone()
+#     c.execute("SELECT * FROM login_user WHERE username=?", (username,))
+#     login_user_data = c.fetchone()
+
+#     if not register_user_data or not login_user_data:
+#         raise InvalidCredentialsError("Invalid username and password")
+
+#     # Verify the password
+#     hashed_password = hashlib.sha256(password.encode()).hexdigest()
+#     if hashed_password != register_user_data[2]:
+        
+#         raise InvalidCredentialsError("Invalid password")
+
+#     # Mark the user as logged in the login table
+#     # c.execute("INSERT INTO login_user (username,password) VALUES (?,?)", (username,hashed_password))
+#     c.execute("SELECT * FROM login_user WHERE username=? AND password=?", (username,hashed_password))
+#     conn.commit()
+#     print("Login successful")
+
+
 def login_user(username, password):
     # Check if the user is already logged in
-    c.execute("SELECT * FROM login_user WHERE username=?", (username,))
+    c.execute("SELECT * FROM login_user WHERE username=? AND logged_in=1", (username,))
     if c.fetchone():
         raise UserAlreadyLoggedInError("User is already logged in")
 
-    # Verify the entered username and password against the stored information in the registration table
-    c.execute("SELECT * FROM register_user WHERE username=?", (username,))
-    register_user_data = c.fetchone()
+    # Verify the entered username and password against the stored information in the login_user table
     c.execute("SELECT * FROM login_user WHERE username=?", (username,))
     login_user_data = c.fetchone()
 
-    if not register_user_data or not login_user_data:
+    if not login_user_data:
         raise InvalidCredentialsError("Invalid username")
 
     # Verify the password
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
-    if hashed_password != register_user_data[2]:
+    if hashed_password != login_user_data[2]:
         raise InvalidCredentialsError("Invalid password")
 
-    # Mark the user as logged in the login table
-    c.execute("INSERT INTO login_user (username,password) VALUES (?,?)", (username,hashed_password))
+    # Mark the user as logged in
+    c.execute("UPDATE login_user SET logged_in=1 WHERE username=?", (username,))
     conn.commit()
     print("Login successful")
 
+
+
+
 # Function to update password
+# def update_password(username, old_password, new_password):
+#     # Check if the user is logged in
+#     c.execute("SELECT * FROM login_user WHERE username=? AND logged_in=1", (username,))
+#     if not c.fetchone():
+#         raise UserNotLoggedInError("User must be logged in to update password")
+
+#     c.execute("SELECT * FROM register_user WHERE username=?", (username,))
+#     user = c.fetchone()
+#     hashed_old_password = hashlib.sha256(old_password.encode()).hexdigest()
+#     if hashed_old_password != user[2]:
+#         raise InvalidCredentialsError("Invalid old password")
+
+#     # Update password
+#     hashed_new_password = hashlib.sha256(new_password.encode()).hexdigest()
+#     c.execute("UPDATE register_user SET password=? WHERE username=?", (hashed_new_password, username))
+#     conn.commit()
+#     print("Password updated successfully")
+
+
 def update_password(username, old_password, new_password):
     # Check if the user is logged in
     c.execute("SELECT * FROM login_user WHERE username=? AND logged_in=1", (username,))
     if not c.fetchone():
         raise UserNotLoggedInError("User must be logged in to update password")
 
-    c.execute("SELECT * FROM register_user WHERE username=?", (username,))
-    user = c.fetchone()
+    # Verify the old password
+    c.execute("SELECT * FROM login_user WHERE username=?", (username,))
+    login_user_data = c.fetchone()
     hashed_old_password = hashlib.sha256(old_password.encode()).hexdigest()
-    if hashed_old_password != user[2]:
+    if hashed_old_password != login_user_data[2]:
         raise InvalidCredentialsError("Invalid old password")
 
-    # Update password
+    # Hash the new password securely
     hashed_new_password = hashlib.sha256(new_password.encode()).hexdigest()
-    c.execute("UPDATE register_user SET password=? WHERE username=?", (hashed_new_password, username))
+
+    # Update the password
+    c.execute("UPDATE login_user SET password=? WHERE username=?", (hashed_new_password, username))
     conn.commit()
     print("Password updated successfully")
+
+
+
 
 # Function to delete account
 def delete_account(username, password):
@@ -149,6 +204,17 @@ def main():
                 print("Error:", e)
 
         elif choice == '3':
+            try:
+                username = input("Enter a username: ")
+                old_password = input("Enter a old password: ")
+                new_password = input("Enter a new password: ")
+
+                update_password(username, old_password, new_password)
+            
+            except(UserNotLoggedInError,InvalidCredentialsError) as e:
+                print("Error:", e)
+
+        elif choice == '4':
             break
 
         else:
