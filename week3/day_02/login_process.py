@@ -62,7 +62,7 @@ def login_user(username, password):
     login_user_data = c.fetchone()
 
     if not login_user_data:
-        raise InvalidCredentialsError("Invalid username")
+        raise InvalidCredentialsError("You have to register first.Invalid username")
 
     # Verify the password
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
