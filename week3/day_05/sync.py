@@ -1,7 +1,7 @@
 import requests
-from timer import timer
+from program_timer import timer
 
-url = "https://httpbin.org/uuid"
+URL  = "https://httpbin.org/uuid"
 
 def fetch_uuid(session, url):
     with session.get(url) as response:
@@ -11,5 +11,4 @@ def fetch_uuid(session, url):
 def main():
     with requests.Session() as session:
         for _ in range(100):
-            fetch_uuid(session, url)
-
+            fetch_uuid(session, URL)

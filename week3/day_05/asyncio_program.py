@@ -1,22 +1,20 @@
 import asyncio
-import requests
-from pro_timer import timer
+import aiohttp
+from program_timer import timer
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 
-url = "https://httpbin.org/uuid"
+URL  = "https://httpbin.org/uuid"
 
 async def fetch_uuid(session, url):
-    with session.get(url) as response:
-        json_data = await response.json()
-        print(response.json()['uuid'])
+    async with session.get(url) as response:
+        json_data =  await response.json()
+        print(json_data['uuid'])
 
 async def func():
     async with aiohttp.ClientSession() as session:
-        tasks = [fetch_uuid(session, url) for _ in range(100)]
-        await asyncio.gether(* tasks)
-        
+        tasks = [fetch_uuid(session, URL) for _ in range(100)]
+        await asyncio.gather(*tasks)
 
-
-@timer(1,1):
-async def run():
+@timer(1,1)
+def main():
     asyncio.run(func())
