@@ -20,4 +20,12 @@ and further explanation in documentation:
 GitHub repository: User Authentication and Management System - GitHub Repository
 https://github.com/bhandariarun/KMC/blob/main/week3/day_02/login_process.py
 
+# System Components
+- The system primarily consists of four main functionalities:
+- Registration
+- Login
+- Update Password
+- Delete Account
+
+Each of these functionalities is explained in detail below.
 
