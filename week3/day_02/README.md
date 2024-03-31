@@ -30,11 +30,9 @@ https://github.com/bhandariarun/KMC/blob/main/week3/day_02/login_process.py
 Each of these functionalities is explained in detail below.
 
 # 1. Registration
-● Users are prompted to register their account by providing a unique username, a valid
-email address, and a password.
-● The system checks if the username already exists in the database. If it does, registration
-fails, and an appropriate message is displayed to the user.
-● Email addresses are validated to ensure they match the Gmail format.
-● Passwords are securely hashed before being stored in the database.
-● Upon successful registration, a confirmation message is displayed.
+- Users are prompted to register their account by providing a unique username, a valid email address, and a password.
+- The system checks if the username already exists in the database. If it does, registration fails, and an appropriate message is displayed to the user.
+- Email addresses are validated to ensure they match the Gmail format.
+- Passwords are securely hashed before being stored in the database.
+- Upon successful registration, a confirmation message is displayed.
 
